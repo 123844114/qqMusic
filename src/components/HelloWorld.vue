@@ -1,14 +1,12 @@
 <template>
   <div class="hello">
-    <router-link to="/home">首页</router-link>
+    <router-link to="/">首页</router-link>
   </div>
 </template>
 
 <script>
-import $axios from 'axios'
 export default {
-  name: 'HelloWorld111'
-  },
+  name: 'HelloWorld',
   methods: {}
 }
 </script>
