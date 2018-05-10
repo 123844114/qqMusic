@@ -10,33 +10,6 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {
-      '/api': {
-        target: 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg', // 接口的域名
-        secure: false, // 如果是https接口，需要配置这个参数
-        changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
-        pathRewrite: {
-          '^/api': ''
-        }
-      },
-      '/top': {
-        target: 'https://c.y.qq.com/v8/fcg-bin/fcg_myqq_toplist.fcg', // 接口的域名
-        secure: false, // 如果是https接口，需要配置这个参数
-        changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
-        pathRewrite: {
-          '^/top': ''
-        }
-      },
-      '/chat': {
-        target: 'http://192.168.112.50:8080', // 接口的域名
-        secure: false, // 如果是https接口，需要配置这个参数
-        changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
-        pathRewrite: {
-          '^/chat': ''
-        }
-      }
-
-    },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined

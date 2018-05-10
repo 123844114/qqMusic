@@ -1,22 +1,23 @@
 <template>
-  <div class="hello">
-    <group>
-      <cell title="title" value="value"></cell>
-    </group>
+  <div class="main">
+
   </div>
 </template>
 
 <script>
-import { Group, Cell } from 'vux'
 export default {
-  name: 'HelloWorld',
+  name: 'layout',
   components: {
-    Group,
-    Cell
+
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
+.main{
+  width:100%
+  position:relative
+  .content{}
+}
 </style>

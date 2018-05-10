@@ -9,7 +9,7 @@
 <script>
 import { Group, Cell } from 'vux'
 export default {
-  name: 'HelloWorld',
+  name: 'mainVue',
   components: {
     Group,
     Cell

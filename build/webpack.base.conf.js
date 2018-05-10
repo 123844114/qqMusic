@@ -6,6 +6,8 @@ const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 var AssetsPlugin = require('assets-webpack-plugin')
 // var assetsPluginInstance = new AssetsPlugin()
+const vuxLoader = require('vux-loader')
+
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
@@ -21,7 +23,8 @@ const createLintingRule = () => ({
   }
 })
 
-module.exports = {
+// 即将原来的module.exports 改为 const webpackConfig
+const webpackConfig = {
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
@@ -31,20 +34,17 @@ module.exports = {
     filename: '[name]_[hash].js',
     publicPath: process.env.NODE_ENV === 'production'
       ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath 
-    /*path: path.resolve(__dirname, '../dist'),
-    filename: '[name]-bundle-[hash].js',
-    publicPath: '/'*/
+      : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json', 'less'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       // webpack 使用 jQuery，如果是自行下载的
       // 'jquery': path.resolve(__dirname, '../src/assets/libs/jquery/jquery.min'),
       // 如果使用NPM安装的jQuery
-      'jquery': 'jquery' 
+      'jquery': 'jquery'
     }
   },
   module: {
@@ -99,16 +99,20 @@ module.exports = {
     child_process: 'empty'
   },
   plugins: [
-    /*new AssetsPlugin({
-            filename: './webpack.assets.js',
-            processOutput: function (assets) {
-                return 'window.ASSETS = ' + JSON.stringify(assets);
-            },
-            metadata: {version: 123,time:new Date('yyyy-mm-dd')}
-        })*/
-        new webpack.ProvidePlugin({
-          $: "jquery",
-          jQuery: "jquery"
-      })
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        drop_debugger: true,
+        drop_console: true
+      },
+      sourceMap: true, // 这里的soucemap 不能少，可以在线上生成soucemap文件，便于调试
+      mangle: true
+    })
   ]
 }
+
+module.exports = vuxLoader.merge(webpackConfig, { plugins: ['vux-ui'] })
