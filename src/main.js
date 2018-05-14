@@ -4,11 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import $axios from 'axios'
-/*
-import elementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-Vue.use(elementUI)
-*/
+import fastclick from 'fastclick'
+fastclick.attach(document.body)
 Vue.config.productionTip = false
 Vue.prototype.$axios = $axios
 /* eslint-disable no-new */
