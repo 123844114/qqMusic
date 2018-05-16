@@ -1,20 +1,30 @@
 <template>
   <div class="main">
-		<Panel :footer="footer" :list="list" :type="type"></Panel>
+		<ul class="toplist">
+			<li class='item' v-for="item in topList" :key="item.id">
+				<img :src="item.picUrl" alt="" />
+				<div class="txt">
+					<h2>{{item.topTitle}}</h2>
+					<a href="" v-for="(song,i) in item.songList" :key="i"> 
+						<span>{{i+1}}</span>
+						<span>{{song.songname}}</span>
+						<span>{{song.singername}}</span>
+					</a>
+				</div>
+			</li>
+		</ul>
   </div>
 </template>
 
 <script>
-	import { Panel } from 'vux'
 export default {
   name: 'layout',
   components: {
-   Panel
   },
   data () {
     return {
       type: '1',
-      list: [{
+      topList: [{
         src: 'http://placeholder.qiniudn.com/60x60/3cc51f/ffffff',
         title: '标题一',
         desc: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。',
@@ -46,8 +56,11 @@ export default {
   		needNewCode:'1',
   		_:'1526479161465'
   	}
-  	vm.$axios.get('/toplist',{query:data}).then(({data})=>{
+  	vm.$axios.get('/toplist',{params:data}).then(({data})=>{
   		console.log(data)
+  		if(data.code===0){
+  			vm.topList = data.data.topList
+  		}
   	})
   }
 }
@@ -57,7 +70,14 @@ export default {
 <style scoped lang="stylus">
 .main{
   width:100%
-  position:relative
-  .content{}
+  position:relative;
+  background: #eee;
+  .toplist{
+  	padding:0 10px;
+  	overflow:hidden;
+  	.item{
+  		float: left;
+  	}
+  }
 }
 </style>
