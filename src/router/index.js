@@ -14,6 +14,7 @@ export default new Router({
       path: '/',
       name: 'layout',
       component: layout,
+      redirect: '/recom',
       children: [
         {
           path: '/recom',
