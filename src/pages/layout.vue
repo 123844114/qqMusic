@@ -2,7 +2,9 @@
   <div class="view-con">
     <logo-header></logo-header>
     <tabs></tabs>
-    <router-view class='content'></router-view>
+    <keep-alive>
+    	<router-view class='content'></router-view>
+    </keep-alive>
   </div>
 </template>
 
