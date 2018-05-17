@@ -5,22 +5,21 @@
 				<img :src="item.picUrl" alt="" />
 				<div class="txt">
 					<h2>{{item.topTitle}}</h2>
-					<a href="" v-for="(song,i) in item.songList" :key="i"> 
+					<a href="" v-for="(song,i) in item.songList" :key="i">
 						<span>{{i+1}}</span>
 						<span>{{song.songname}}</span>
 						<span>{{song.singername}}</span>
 					</a>
 				</div>
-			</li>
-		</ul>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
   name: 'layout',
-  components: {
-  },
+  components: {},
   data () {
     return {
       type: '1',
@@ -44,28 +43,27 @@ export default {
       }
     }
   },
-  mounted(){
-  	let vm =this
-  	let data={
-  		g_tk:'5381',
-  		uin:'0',
-  		format:'json',
-  		outCharset:'utf-8',
-  		notice:'0',
-  		platform:'h5',
-  		needNewCode:'1',
-  		_:'1526479161465'
+  mounted () {
+    let vm = this
+    let data = {
+      g_tk: '5381',
+      uin: '0',
+  		format: 'json',
+  		outCharset: 'utf-8',
+  		notice: '0',
+  		platform: 'h5',
+  		needNewCode: '1',
+  		_: '1526479161465'
   	}
-  	vm.$axios.get('/toplist',{params:data}).then(({data})=>{
+  	vm.$axios.get('/toplist', {params: data}).then(({data}) => {
   		console.log(data)
-  		if(data.code===0){
+  		if (data.code === 0) {
   			vm.topList = data.data.topList
   		}
   	})
   }
 }
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
 .main{

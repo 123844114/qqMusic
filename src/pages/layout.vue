@@ -24,6 +24,9 @@ export default {
 .view-con{
   width:100%
   position:relative
-  .content{}
+  .content{
+    position:relative
+    top: 94px;
+  }
 }
 </style>

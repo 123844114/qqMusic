@@ -19,6 +19,9 @@ export default {
   padding 0 10px
   overflow hidden
   background #31C27C
+  position fixed
+  top 0
+  z-index 999
   h1{
     display inline-block
     font-size 0

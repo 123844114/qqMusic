@@ -20,36 +20,36 @@
 </template>
 
 <script>
-	import { Grid, GridItem } from 'vux'
-	export default {
-		name: 'mainVue',
-		data() {
-			return {
-				slides: [],
-				radioList: []
-			}
-		},
-		components: {
-			Grid,
-			GridItem
-		},
-		created() {
-			let vm = this
-			vm.$axios.get('/api').then(({
-				data
-			}) => {
-				vm.slides = data.data.slider
-				vm.radioList = data.data.radioList
-				console.log(data)
-			})
-		},
-		methods: {
-			goDetail(id) {
-				// 跳转到热歌详情
-				alert(id)
-			}
-		}
-	}
+import { Grid, GridItem } from 'vux'
+export default {
+  name: 'mainVue',
+  data () {
+    return {
+      slides: [],
+      radioList: []
+    }
+  },
+  components: {
+    Grid,
+    GridItem
+  },
+  created () {
+    let vm = this
+    vm.$axios.get('/api').then(({
+      data
+    }) => {
+      vm.slides = data.data.slider
+      vm.radioList = data.data.radioList
+      console.log(data)
+    })
+  },
+  methods: {
+    goDetail (id) {
+      // 跳转到热歌详情
+      alert(id)
+    }
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

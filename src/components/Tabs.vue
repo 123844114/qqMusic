@@ -29,6 +29,9 @@ export default{
 <style lang='stylus' scoped="">
 .tabMain{
     // position:absolute
-    width:100%
+    width 100%
+    position fixed
+    top 50px
+    z-index 999
 }
 </style>
