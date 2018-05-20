@@ -1,27 +1,32 @@
 <template>
   <div class="main">
+    <tabs :options='selected'></tabs>
 		<ul class="toplist">
-			<li class='item' v-for="item in topList" :key="item.id">
-				<img :src="item.picUrl" alt="" />
-				<div class="txt">
-					<h2>{{item.topTitle}}</h2>
-					<a href="" v-for="(song,i) in item.songList" :key="i">
-						<span>{{i+1}}</span>
-						<span>{{song.songname}}</span>
-						<span>{{song.singername}}</span>
-					</a>
-				</div>
+			<li class="item" v-for="item in topList" :key="item.id">
+       <router-link class="item" tag="div" :to="{path:'/toplistinfo',query:{id:item.id}}">
+        <img :src="item.picUrl" alt="" />
+        <div class='txt'>
+          <h2>{{item.topTitle}}</h2>
+          <p v-for="(song,i) in item.songList" :key="i">
+            <span>{{i+1}}</span>
+            {{song.songname}}
+            <span>-{{song.singername}}</span>
+          </p>
+        </div>
+      </router-link>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import tabs from '@/components/Tabs'
 export default {
   name: 'layout',
-  components: {},
+  components: {tabs},
   data () {
     return {
+      selected: 'item2',
       type: '1',
       topList: [{
         src: 'http://placeholder.qiniudn.com/60x60/3cc51f/ffffff',
@@ -67,14 +72,47 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="stylus">
 .main{
-  width:100%
-  position:relative;
-  background: #eee;
+  width 100%
+  position relative
+  background #eee
   .toplist{
-  	padding:0 10px;
-  	overflow:hidden;
+  	padding 0 10px
+  	overflow hidden
   	.item{
-  		float: left;
+  		float left;
+      margin-top 10px
+      position relative
+      background #ffffff
+      width 100%
+      img{
+        widht 100px
+        height 100px
+        position absolute
+        left 0
+        top 0
+      }
+      .txt{
+        padding 0.2rem 0
+        margin-left 105px
+        height 100px
+        h2{
+          font-size 1.0rem
+          font-weight normal
+        }
+        p{
+          display block
+          color #000
+          text-decoration none
+          font-size 0.8rem
+          margin-top 7px
+          overflow hidden
+          text-overflow ellipsis
+          white-space nowrap
+        }
+        span{
+          color #a5a3a3
+        }
+      }
   	}
   }
 }

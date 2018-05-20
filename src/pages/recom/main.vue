@@ -1,5 +1,6 @@
 <template>
 	<div class="hello">
+    <tabs :options='selected'></tabs>
 		<!-- 轮播图 -->
 		<wc-swiper v-if='slides.length'>
 			<wc-slide v-for="(slide, key) in slides" :key="key">
@@ -20,16 +21,19 @@
 </template>
 
 <script>
+import tabs from '@/components/Tabs'
 import { Grid, GridItem } from 'vux'
 export default {
   name: 'mainVue',
   data () {
     return {
+      selected: 'item1',
       slides: [],
       radioList: []
     }
   },
   components: {
+    tabs,
     Grid,
     GridItem
   },

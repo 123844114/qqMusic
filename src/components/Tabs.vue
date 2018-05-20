@@ -1,37 +1,62 @@
 <template>
-    <tab class='tabMain'>
-        <tab-item @on-item-click="handler" selected>推荐</tab-item>
-        <tab-item @on-item-click="handler">排行榜</tab-item>
-        <tab-item @on-item-click="handler">搜索</tab-item>
-    </tab>
+    <div class="tabMain">
+      <router-link
+      v-for="(item,index) in tabList"
+      :key="index"
+      :to="item.url"
+      tag="div"
+      >{{item.name}}</router-link>
+    </div>
 </template>
 <script>
-import { Tab, TabItem } from 'vux'
 export default{
   name: 'Tabs',
+  props: ['options'],
   components: {
-    Tab,
-    TabItem
+  },
+  data () {
+    return {
+      tabList: [
+        {selected: 'item1', name: '推荐', url: '/recom'},
+        {selected: 'item2', name: '排行榜', url: '/toplist'},
+        {selected: 'item3', name: '搜索', url: '/search'}
+      ]
+    }
   },
   methods: {
-    handler (index) {
-      switch (index) {
-        case 0:
-          this.$router.push('/recom')
-          break
-        case 1:
-          this.$router.push('/toplist')
-      }
-    }
   }
 }
 </script>
 <style lang='stylus' scoped="">
 .tabMain{
-    // position:absolute
+    position absolute
     width 100%
     position fixed
     top 50px
     z-index 999
+    height 40px
+    line-height 40px
+    font-size 1rem
+    div{
+      float left
+      width 33.3%
+      text-align center
+      position relative
+      background #fff
+      font-weight normal
+      color rgba(0,0,0,.6)
+    }
+    .router-link-exact-active{
+      color #31C27C
+    }
+    .router-link-exact-active:before{
+      content:''
+      position:absolute
+      bottom 0px
+      left 0
+      width 100%
+      height 3px
+      background #31C27C
+    }
 }
 </style>

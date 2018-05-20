@@ -1,7 +1,6 @@
 <template>
   <div class="view-con">
     <logo-header></logo-header>
-    <tabs></tabs>
     <keep-alive>
     	<router-view class='content'></router-view>
     </keep-alive>
@@ -9,12 +8,11 @@
 </template>
 
 <script>
-import tabs from '@/components/tabs'
 import LogoHeader from '@/components/LogoHeader'
 export default {
   name: 'layout',
   components: {
-    tabs, LogoHeader
+    LogoHeader
   }
 }
 </script>
@@ -26,7 +24,7 @@ export default {
   position:relative
   .content{
     position:relative
-    top: 94px;
+    top: 90px;
   }
 }
 </style>
