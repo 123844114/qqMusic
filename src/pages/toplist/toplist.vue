@@ -1,5 +1,8 @@
 <template>
-	<div>详情页</div>
+	<div class="main">
+		<div>顶部</div>
+		<div>列表</div>
+	</div>
 </template>
 <script>
 export default{
