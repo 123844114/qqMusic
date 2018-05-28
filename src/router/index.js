@@ -9,34 +9,31 @@ Vue.use(Router)
 
 export default new Router({
   // linkActiveClass: 'active',
-  routes: [
+  routes: [{
+    path: '/',
+    name: 'layout',
+    component: layout,
+    redirect: '/recom',
+    children: [{
+      path: '/recom',
+      name: 'recom',
+      component: Recom
+    },
     {
-      path: '/',
-      name: 'layout',
-      component: layout,
-      redirect: '/recom',
-      children: [
-        {
-          path: '/recom',
-          name: 'recom',
-          component: Recom
-        },
-        {
-          path: '/toplist',
-          name: 'toplist',
-          component: Toplist
-        },
-        {
-          path: '/search',
-          name: 'search',
-          component: Search
-        },
-        {
-          path: '/toplistinfo',
-          name: 'toplistinfo',
-          component: Toplistinfo
-        }
-      ]
+      path: '/toplist',
+      name: 'toplist',
+      component: Toplist
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: Search
+    },
+    {
+      path: '/toplistinfo',
+      name: 'toplistinfo',
+      component: Toplistinfo
     }
-  ]
+    ]
+  }]
 })
