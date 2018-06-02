@@ -18,7 +18,10 @@ export default {
       topinfo: {
         ListName: '',
         day_of_year: '',
-        date: ''
+        date: '',
+        data: {
+          songname: ''
+        }
       },
       songlist: [],
       totalSongNum: 0
@@ -41,6 +44,7 @@ export default {
       vm.topinfo.date = data.date
       vm.songlist = data.songlist
       vm.totalSongNum = data.total_song_num
+      vm.topinfo.data = data.songlist[0].data
     }
   }
 }

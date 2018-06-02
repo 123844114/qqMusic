@@ -23,9 +23,12 @@
                     </svg>
                   </use>
                 </svg>
+                <svg class="progress">
+                  <circle class="progress__circle" id="js_progress_circle" cx="23" cy="23" r="18" stroke-dasharray="28.60777322447847 113"></circle>
+                </svg>
               </div>
               <div class="play_bar__bd">
-                <h2 class="song_name">Like That</h2>
+                <h2 class="song_name">{{options.data.songname}}</h2>
                 <div class="lyrics">
                   <div class="lyrics__bd" style="transition: -webkit-transform 0.3s ease-out; transform: translate3d(0px, 0px, 0px);">
                     <p id="line_0" class="lyrics__item">爱能有多好 - 庄心妍 (Ada Zhuang)</p>
@@ -39,6 +42,7 @@
     </div>
 </template>
 <script>
+import $ from 'jquery'
 export default {
   name: 'infotop',
   props: ['options'],
@@ -46,6 +50,9 @@ export default {
     return {
       isAll: true
     }
+  },
+  updated () {
+    console.log($('#js_progress_circle').css('stroke-dasharray', '39 113'))
   }
 }
 </script>
@@ -222,6 +229,20 @@ export default {
     object-fit: cover;
     transform: scale(1.9) translateZ(0);
     filter: blur(33px);
+  }
+  .progress{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 46px;
+    height: 46px;
+    transform: rotate(-90deg);
+    .progress__circle{
+      fill none
+      stroke #31c27c
+      stroke-width 2px
+    }
   }
 }
 </style>

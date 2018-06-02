@@ -2,20 +2,59 @@
   <div class="listBox">
     <div class="title">排行榜 共{{total}}首</div>
     <ul class="listBox">
-      <li class="item" v-for="(item,index) in options" :key="index">
+      <li class="item" v-for="(item,index) in options" :key="index" @click="playSong(item)">
         <div :class="{'tip':true,'isRed':index<3}">{{index}}</div>
         <div class="txt">
           <h3 class="txt-h">{{item.data.songname}}</h3>
-          <P class="txt-p">{{item.data.singer[0].name}}</P>
+          <!-- <P class="txt-p">{{item.data.singer[0].name}}</P> -->
+          <p class="txt-p">
+            <span v-for="(songer,index) in item.data.singer" :key="index">{{songer.name}}<i v-if="index!==item.data.singer.length-1" >/</i></span>
+          </p>
         </div>
       </li>
     </ul>
   </div>
 </template>
 <script>
+import apiFactory from '@/apis/apiFactory'
+import originJSONP from 'jsonp'
 export default {
   name: 'infoList',
-  props: ['options', 'total']
+  props: ['options', 'total'],
+  data () {
+    return {
+    }
+  },
+  methods: {
+    playSong (item) {
+      // 播放被点击的歌曲-找歌词-歌名
+      console.log(item)
+      let url = 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric.fcg'
+      let param = {
+        g_tk: '5381',
+        uin: '0',
+        inCharset: 'utf-8',
+        outCharset: 'utf-8',
+        notice: '0',
+        platform: 'h5',
+        needNewCode: '1',
+        format: 'jsonp',
+        nobase64: 1,
+        musicid: item.data.songid,
+        songtype: 0,
+        _: '1527933679386',
+        jsonpCallback: 'jsonp1'
+      }
+      // let result = await apiFactory(url, param)
+      // console.log(result)
+      /* this.$jsonp(url, param).then((data) => {
+        console.log(data)
+      }) */
+      originJSONP(url, param, (data) => {
+        console.log(data)
+      })
+    }
+  }
 }
 </script>
 <style lang="stylus" scope>
@@ -68,6 +107,9 @@ export default {
     text-overflow: ellipsis;
     color: #777;
     font-size 12px
+    i{
+      padding:0 5px
+    }
    }
  }
 }
