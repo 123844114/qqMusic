@@ -31,7 +31,34 @@ export default {
   methods: {
     playSong (item) {
       // 播放被点击的歌曲-找歌词-歌名
-
+      console.log(item)
+      let url = 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric.fcg?g_tk=5381&uin=0&format=jsonp&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&nobase64=1&musicid=214046115&songtype=0&_=1528097715374'
+      /*  let param = {
+        g_tk: '5381',
+        uin: '0',
+        inCharset: 'utf-8',
+        outCharset: 'utf-8',
+        notice: '0',
+        platform: 'h5',
+        needNewCode: '1',
+        format: 'jsonp',
+        nobase64: 1,
+        musicid: item.data.songid,
+        songtype: 0,
+        _: '1527933679386',
+        jsonpCallback: 'jsonp1'
+      } */
+      // let result = await apiFactory(url, param)
+      // console.log(result)
+      /* this.$jsonp(url, param).then((data) => {
+        console.log(data)
+      }) */
+      var param = {
+        param: 'jsonpCallback '// 此处的jsonpCallback是对应的回调函数名称
+      }
+      originJSONP(url, param, (data) => {
+        console.log(data)
+      })
     },
     getdata () {
       // 此处的url是完整的地址，可以改进下重新封装此url
